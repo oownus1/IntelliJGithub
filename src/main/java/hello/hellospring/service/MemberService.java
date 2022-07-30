@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,19 @@ public class MemberService {
 
     //회원 가입
     public Long join(Member member){
+        //long start = System.currentTimeMillis();
+     //   try{
+            validateDuplicateMember(member); //중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+     //   }finally {
+       //     long finish = System.currentTimeMillis();
+         //   long timeMs = finish - start;
+          //  System.out.println("join = ", timeMs + "ms");
+      //  }
+    }
         //같은 이름이 있는 중복회원은 안된다
-        validateDuplicateMember(member); //중복회원 안되는 메소드 추출 ctrl + Alt + m
+        private void validateDuplicateMember(Member member); //중복회원 안되는 메소드 추출 ctrl + Alt + m
         memberRepository.save(member);
         return member.getId();
     }
@@ -32,8 +44,16 @@ public class MemberService {
 
     //전체 회원 조회
     public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
+       // long start = System.currentTimeMillis();
+       // try {
+            return memberRepository.findAll();
+      //  }finally {
+        //    long finish = System.currentTimeMillis();
+         //   long timeMs = finish - start;
+          //  System.out.println("findMembers " + timeMs +"ms");
+        }
+      //  return memberRepository.findAll();
+    //}
 
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);

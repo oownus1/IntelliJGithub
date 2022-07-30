@@ -12,7 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.Column;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -27,6 +30,7 @@ class MemberServiceIntergrationTest {
     @Test //ctrl + shift + t 로 테스트 자동으로 만들어주었는데
     //test는 한글로 해도 된다고함
     //빌드될때 이 테스트코드는 실행되지 않는다고 함
+    @Commit
     void 회원가입() {
         //given
         Member member = new Member();
